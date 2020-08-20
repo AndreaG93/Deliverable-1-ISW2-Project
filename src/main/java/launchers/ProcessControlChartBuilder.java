@@ -1,4 +1,4 @@
-package main;
+package launchers;
 
 public class ProcessControlChartBuilder {
 
