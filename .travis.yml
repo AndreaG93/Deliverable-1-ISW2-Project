@@ -1,2 +1,29 @@
+# -------------------------------------------------------------------------------------------------------------------- #
+# ".travis.yml" --> This file is required to configure "Travis CI Builds" properly.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+# Travis CI build config reference documentation is available in
+# -> https://config.travis-ci.com/
+
+# Travis CLI must be installed. To do that run:
+# ->  gem install travis
+
 language:
   java
+
+# --> Build addons enable additional built-in functionality, such as installing build dependencies, system setup tasks,
+#     and integrations with external services (like "SonarCloud")
+
+addons:
+  sonarcloud:
+    organization: "andreag93"
+    token:
+      secure: BYYHcNR4KuVztMoYPtyJ9m2uoaMWOm89HnwgxgF/+xvHG37d5im3yXoUYUPbQUNPuio4MAr3DaxUMuYcN6Z8Rp3vUEuhzu74HFBj1FmQG8dsGwWfSWVeFcaZEFxSqAmZxw3NyWJ6siA2Th/gsqCGJGY0NR13QxWKC9UwhPjWtkyxOBPEJbX8uJxoBlQHL0bwv6HDs1dLeCUUrRrxx0/gBEJ0PzCGvR1BgjAn6JBQt00qXh9gEkHbPwJ/EgovToafjk1Jjj0nwBauNXNlQYaBf9bP3Q26D7xwrAN1tu70sqD/qYtlbQIJf3fQ0/1pNxso3Ugd/MK3vorjR9ASymZioJP2KZhpnNmx6/Ev4ZEKc7LCC0iHnHjqdXgygXT98oY+9IqTu8PdLnEa29RVpzEmjAwhvgKWO2s4FAFudaweMocTytau/QR6R4JVFC5HHW3rvvxU7LpFB4ggXPAZEeYzn9UkixH2QJI3+YkEhhNRhv3OzaJ1XeeRaAAIjLcNyObT8DxTXAWdKzMEkvC82qClq84yMMLDZDdfo+qWP/HkvL+f5MjoEiWxFO8+UG4bnqHCr7IepolFfCGO1d5HowfG5p1VqY1ppw4AvpPUA94Xq45+J6vTdEJU2lk/zyNK6BqQphKIrCsMAxSQ23bnmHMzu21L1kT1Z6kVMR0SczO0Pas=
+
+# --> The following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+# --> For references see
+#     --> https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/
+#     --> https://docs.sonarqube.org/latest/analysis/analysis-parameters/
+#     --> https://docs.sonarqube.org/latest/analysis/languages/java/
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
