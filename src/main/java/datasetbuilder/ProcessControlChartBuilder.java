@@ -96,7 +96,11 @@ public class ProcessControlChartBuilder {
             else
                 bugFixDate = bugFixCommit.date.toLocalDate();
 
-            this.processControlChartData.merge(bugFixDate, 1, Integer::sum);
+            int year = bugFixDate.getYear();
+            int month = bugFixDate.getMonthValue();
+
+            LocalDate date = LocalDate.of(year, month, 1);
+            this.processControlChartData.merge(date, 1, Integer::sum);
         }
     }
 }
